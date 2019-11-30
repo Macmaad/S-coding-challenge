@@ -131,18 +131,16 @@ def get_intersections(arr):
     :return returns the intersections dots array: 
     """
     intersection_dots = []
-    for i in range(0, len(arr)):
-        lower_bound = arr[i].left_edge
-        upper_bound = arr[i].right_edge
-        for j in range(0, len(arr)):
-            if lower_bound < arr[j].left_edge < upper_bound:
-                if arr[j].height > arr[i].height:
-                    # print(lower_bound, arr[j].left_edge, arr[i].height, upper_bound, end="\n")
-                    intersection_dots.append((arr[j].left_edge, arr[i].height))
-            if lower_bound < arr[j].right_edge < upper_bound:
-                if arr[j].height > arr[i].height:
-                    # print(lower_bound, arr[j].right_edge, arr[i].height, upper_bound, end="\n")
-                    intersection_dots.append((arr[j].right_edge, arr[i].height))
+    for element in arr:
+        lower_bound = element.left_edge
+        upper_bound = element.right_edge
+        for subelement in arr:
+            if lower_bound < subelement.left_edge < upper_bound:
+                if subelement.height > element.height:
+                    intersection_dots.append((subelement.left_edge, element.height))
+            if lower_bound < subelement.right_edge < upper_bound:
+                if subelement.height > element.height:
+                    intersection_dots.append((subelement.right_edge, element.height))
     return intersection_dots
 
 
